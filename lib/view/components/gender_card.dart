@@ -1,22 +1,16 @@
-import 'package:bmi_calculator_2/components/card.dart';
+import 'package:bmi_calculator_2/view/components/card.dart';
 import 'package:flutter/material.dart';
-import 'card.dart';
 
-class GenderCard extends StatefulWidget {
+class GenderCard extends StatelessWidget {
   final String gender;
   final IconData genderIconData;
-  Color color;
+  final Color color;
 
   GenderCard(
       {required this.gender,
       required this.genderIconData,
       required this.color});
 
-  @override
-  _GenderCardState createState() => _GenderCardState();
-}
-
-class _GenderCardState extends State<GenderCard> {
   @override
   Widget build(BuildContext context) {
     return CardWidget(
@@ -25,15 +19,15 @@ class _GenderCardState extends State<GenderCard> {
         child: Column(
           children: [
             Icon(
-              widget.genderIconData,
-              color: widget.color,
+              genderIconData,
+              color: color,
               size: 100,
             ),
             Text(
-              widget.gender,
+              gender,
               style: TextStyle(
                 fontSize: 20,
-                color: widget.color,
+                color: color,
               ),
             ),
           ],

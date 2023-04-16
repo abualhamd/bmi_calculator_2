@@ -1,38 +1,31 @@
-import 'package:bmi_calculator_2/components/card.dart';
-import 'package:bmi_calculator_2/constants/colors.dart';
-import 'package:bmi_calculator_2/constants/decorations_and_styles.dart';
+import 'package:bmi_calculator_2/view/components/card.dart';
+import 'package:bmi_calculator_2/app/utils/colors_manager.dart';
+import 'package:bmi_calculator_2/app/utils/decorations_and_styles.dart';
+import 'package:bmi_calculator_2/view/components/material_pink_button.dart';
+import 'package:bmi_calculator_2/view/provider/bmi_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../app/utils/app_strings.dart';
 
 class ResultsScreen extends StatelessWidget {
-  final String bmi;
-  final String intrprt;
-  final String advice;
-
-  ResultsScreen({
-    required this.bmi,
-    required this.intrprt,
-    required this.advice,
-  });
+  const ResultsScreen();
 
   @override
   Widget build(BuildContext context) {
+    final read = context.read<BMIProvider>();
+
     return Scaffold(
-      backgroundColor: kBackgroundColor,
       appBar: AppBar(
-        backgroundColor: kBackgroundColor,
-        leading: null,
-        title: Text('BMI Calculator'),
+        automaticallyImplyLeading: false,
+        title: Text(AppStrings.appTitle),
       ),
-      bottomNavigationBar: MaterialButton(
+      bottomNavigationBar:
+          MaterialPinkButton(
         onPressed: () {
           Navigator.pop(context);
         },
-        height: 50,
-        color: kPinkColor,
-        child: Text(
-          'Re-calculate your BMI',
-          style: kActiveTitleTextStyle,
-        ),
+        text: AppStrings.reCalcBMI,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 25),
@@ -42,7 +35,7 @@ class ResultsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Text(
-                'Your Result',
+                AppStrings.youResult,
                 textAlign: TextAlign.start,
                 style: TextStyle(
                     color: Colors.white,
@@ -59,14 +52,14 @@ class ResultsScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          intrprt,
+                          read.interpretation,
                           style: TextStyle(
-                              color: kGreenColor,
+                              color: ColorsManager.greenColor,
                               fontSize: 25,
                               fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          bmi,
+                          read.bmiIndex.toInt().toString(),
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 90,
@@ -76,20 +69,20 @@ class ResultsScreen extends StatelessWidget {
                         Column(
                           children: [
                             Text(
-                              'Normal BMI range:',
+                              AppStrings.normalBMIRange,
                               style: kInctiveTitleTextStyle,
                             ),
                             SizedBox(
                               height: 5,
                             ),
                             Text(
-                              '18,5 - 25 kg/m2',
+                              AppStrings.normalRange,
                               style: kActiveTitleTextStyle,
                             ),
                           ],
                         ),
                         Text(
-                          advice,
+                          read.advice,
                           textAlign: TextAlign.center,
                           style: kActiveTitleTextStyle,
                         ),

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'colors.dart';
+import 'colors_manager.dart';
 
 const BoxDecoration kBoxDecoration = BoxDecoration(
   borderRadius: const BorderRadius.all(const Radius.circular(15)),
-  color: kInactiveGenderCardColor,
+  color: ColorsManager.inactiveGenderCardColor,
 );
 
 const BoxDecoration kInactiveBoxDecoration = BoxDecoration(
   borderRadius: const BorderRadius.all(const Radius.circular(15)),
-  color: kInactiveGenderCardColor,
+  color: ColorsManager.inactiveGenderCardColor,
 );
 
 const BoxDecoration kActiveBoxDecoration = BoxDecoration(
   borderRadius: const BorderRadius.all(const Radius.circular(15)),
-  color: kActiveGenderCardColor,
+  color: ColorsManager.activeGenderCardColor,
 );
 
 const TextStyle kActiveTitleTextStyle = TextStyle(
@@ -23,7 +23,7 @@ const TextStyle kActiveTitleTextStyle = TextStyle(
 
 const TextStyle kInctiveTitleTextStyle = TextStyle(
   fontSize: 20,
-  color: kGreyColor,
+  color: ColorsManager.greyColor,
 );
 
 const TextStyle kNumbersTextStyle = TextStyle(
