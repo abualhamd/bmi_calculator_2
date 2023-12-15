@@ -1,12 +1,13 @@
-import 'package:bmi_calculator_2/view/components/count_widget.dart';
-import 'package:bmi_calculator_2/app/utils/colors_manager.dart';
-import 'package:bmi_calculator_2/view/components/material_pink_button.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import '../../../app/config/routes_manager.dart';
-import '../../../app/utils/app_strings.dart';
 
+import '../../../app/config/go_router.dart';
+import '../../../app/utils/app_strings.dart';
+import '../../../app/utils/colors_manager.dart';
 import '../../../app/utils/enums/enums.dart';
+import '../../components/count_widget.dart';
+import '../../components/material_pink_button.dart';
 import '../../provider/bmi_provider.dart';
 import 'components/gender_row_widget.dart';
 import 'components/height_slider_widget.dart';
@@ -85,7 +86,11 @@ class BMICalcuator extends StatelessWidget {
       bottomNavigationBar: MaterialPinkButton(
         onPressed: () {
           read.calcBMI();
-          Navigator.pushNamed(context, Routes.resultsRoute);
+          context.goNamed(AppRoutes.resultsRoute, extra: {
+            "bmiIndex": read.bmiIndex,
+            "interpretation": read.interpretation,
+            "advice": read.advice,
+          });
         },
         text: AppStrings.calcBMI,
       ),
