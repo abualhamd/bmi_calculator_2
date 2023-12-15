@@ -4,14 +4,14 @@ import 'package:provider/provider.dart';
 
 import '../view/provider/bmi_provider.dart';
 import 'config/app_theme.dart';
-import 'config/routes_manager.dart';
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      child: MaterialApp(
-        onGenerateRoute: RouteGenerator.getRoute,
+      child: MaterialApp.router(
+        // onGenerateRoute: RouteGenerator.getRoute,
+        routerConfig: ,
         title: AppStrings.appTitle,
         theme: appTheme,
       ),

@@ -62,7 +62,7 @@ class BMIProvider extends ChangeNotifier {
     } else if (_bmiIndex >= 18) {
       return AppStrings.normalMessage;
     } else {
-      return AppStrings.underweightMessage;;
+      return AppStrings.underweightMessage;
     }
   }
 }
