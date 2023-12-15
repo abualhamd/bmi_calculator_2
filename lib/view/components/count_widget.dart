@@ -9,14 +9,19 @@ import 'circular_push_button.dart';
 
 class CountWidget extends StatelessWidget {
   final String title;
+  final int count;
+  final VoidCallback onIncrease;
+  final VoidCallback onDecrease;
 
   CountWidget({
     required this.title,
+    required this.count,
+    required this.onIncrease,
+    required this.onDecrease,
   });
 
   @override
   Widget build(BuildContext context) {
-    final watch = context.watch<BMIProvider>();
 
     return CardWidget(
       child: Padding(
@@ -30,9 +35,7 @@ class CountWidget extends StatelessWidget {
               style: kActiveTitleTextStyle,
             ),
             Text(
-              title == AppStrings.weight
-                  ? watch.bmiModel.weight.toString()
-                  : watch.bmiModel.age.toString(),
+              count.toString(),
               style: kNumbersTextStyle,
             ),
             Row(
@@ -40,10 +43,12 @@ class CountWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CircularPushButton(
+                  onPressed: onIncrease,
                   iconData: Icons.add,
                   count: title,
                 ),
                 CircularPushButton(
+                  onPressed: onDecrease,
                   iconData: Icons.remove,
                   count: title,
                 ),

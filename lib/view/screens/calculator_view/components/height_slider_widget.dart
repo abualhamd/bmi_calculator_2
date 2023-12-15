@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../app/utils/app_strings.dart';
 import '../../../../app/utils/colors_manager.dart';
 import '../../../../app/utils/decorations_and_styles.dart';
 import '../../../components/card.dart';
-import '../../../provider/bmi_provider.dart';
 
 class HeightSlider extends StatelessWidget {
   const HeightSlider({
     Key? key,
+    required this.height,
+    required this.onHeightChanged,
   }) : super(key: key);
+
+  final int height;
+  final void Function(double) onHeightChanged;
 
   @override
   Widget build(BuildContext context) {
-    final watch = context.watch<BMIProvider>();
-    final read = context.read<BMIProvider>();
 
     return Expanded(
       child: CardWidget(
@@ -32,7 +33,7 @@ class HeightSlider extends StatelessWidget {
               textBaseline: TextBaseline.alphabetic,
               children: [
                 Text(
-                  watch.bmiModel.height.toString(),
+                  height.toString(),
                   style: kNumbersTextStyle,
                 ),
                 Text(
@@ -57,12 +58,10 @@ class HeightSlider extends StatelessWidget {
                 inactiveTrackColor: ColorsManager.inactiveTrackColor,
               ),
               child: Slider(
-                value: watch.bmiModel.height.toDouble(),
+                value: height.toDouble(),
                 min: 120,
                 max: 220,
-                onChanged: (value) {
-                  read.setHeight(height: value.round().toInt());
-                },
+                onChanged: onHeightChanged,
               ),
             ),
           ],
