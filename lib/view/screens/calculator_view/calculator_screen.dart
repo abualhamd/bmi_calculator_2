@@ -116,7 +116,7 @@ class BMICalcuator extends HookWidget {
           );
           final interpretation = getInterpretation(bmiIndex: bmiIndex);
           final advice = getAdvice(bmiIndex: bmiIndex);
-          context.goNamed(AppRoutes.resultsRoute, extra: {
+          context.goNamed(Routes.resultsRoute, extra: {
             "bmiIndex": bmiIndex,
             "interpretation": interpretation,
             "advice": advice,

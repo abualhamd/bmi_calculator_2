@@ -23,7 +23,7 @@ class ResultsScreen extends StatelessWidget {
     return PopScope(
       canPop: false,
       onPopInvoked: (didPop) {
-        context.pop();
+        if (!didPop) context.pop();
       },
       child: Scaffold(
         appBar: AppBar(
